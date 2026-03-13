@@ -135,8 +135,18 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 AUTH_USER_MODEL = 'users.User'
 
 
-# REST_FRAMEWORK = {
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     )
-# }
+REST_FRAMEWORK = {
+     "DEFAULT_RENDERER_CLASSES": (
+        "rest_framework.renderers.JSONRenderer",
+    ),
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://localhost:6379/1",  # Update to your production Redis server
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
