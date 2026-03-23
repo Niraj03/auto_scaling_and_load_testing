@@ -23,7 +23,7 @@ class ListOfUserAPIView(generics.ListAPIView):
         # data = serializer.data
         # new_data = {}
         queryset = list(User.objects.all().values("id", "username", "email", "first_name", "last_name"))
-        users_list = list(queryset)
+        users_list = queryset
 
         # ✅ 3. Build response
         new_data = {
